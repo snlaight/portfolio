@@ -1,7 +1,4 @@
-'use client';
-
 import '@/styles/globals.css';
-import { Navbar } from '@/components';
 import RenderProviders from '@/providers';
 
 export const metadata = {
@@ -18,9 +15,6 @@ const RootLayout = ({
   <html lang='en'>
     <body>
       <RenderProviders>
-        <header>
-          <Navbar />
-        </header>
         {children}
       </RenderProviders>
     </body>
