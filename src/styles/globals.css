@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* All */
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 5rem !important;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 12rem !important;
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-background_primary;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 100vh;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #2758b3;
+}
+
+body {
+  @apply bg-background_primary font-SourceCode;
+}
+
+/* Embla */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.text-blue-shadow {
+  /* text-shadow: 0px -5px 15px #3b82f6, 0 5px 15px #4d4fe6; */
+  text-shadow: 0px 0px 20px #3b82f6;
+}
+
+.button-custom {
+  @apply relative px-8 py-3 text-lg font-bold text-white bg-black rounded-lg border-none transition-transform duration-100 sm:cursor-pointer cursor-none;
+}
+
+.button-custom::before {
+  background: linear-gradient(45deg, #29a847, #ffc105, #007bff, #ffc105, #29a847, #ffc105, #007bff, #ffc105);
+  @apply absolute z-[-1] w-full h-full top-0 left-0 content-[""] bg-[size:800%] blur-md rounded-xl animate-glowing-button;
+}
+
+.button-custom:hover {
+  @apply z-10 bg-transparent scale-105;
+}
+
+.input-select-custom {
+  @apply px-8 py-3 text-lg font-bold text-white bg-black rounded-t-lg border-none outline-none;
+  box-shadow: 10px 0px 15px #3b82f6, 0px 0px 20px #22d3ee, -10px 0px 25px #4f46e5;
+  border-right: 15px solid transparent;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Custom */
+.container-section {
+  @apply w-full lg:w-[90%] mx-auto;
+}
+
+.nav-link {
+  @apply px-8 py-2 text-base font-bold text-gray-50 rounded-lg cursor-pointer;
+}
+
+.nav-link:hover {
+  @apply duration-300 bg-button/50;
+}
+
+.nav-link-active {
+  @apply bg-button/50;
+}
+
+.nav-link-mobile {
+  @apply px-8 py-2 w-1/2 text-base font-bold text-center text-gray-50 rounded-lg cursor-none sm:cursor-pointer;
+}
+
+.nav-link-mobile:hover {
+  @apply duration-300 bg-button;
+}
+
+.tab {
+  @apply pb-2 w-full text-center cursor-none sm:cursor-pointer;
+}
+
+.tab-active {
+  @apply font-bold;
+}
+
+.tab-active::after {
+  @apply block w-full mx-auto mt-2 ease-in-out bg-gray-50 content-[''] h-1 animate-fade-in-tab;
+}
+
+.input-text,
+.input-message {
+  @apply px-4 py-4 w-full text-lg font-bold text-gray-50 bg-transparent rounded-lg border-2 border-gray-50 outline-none;
+}
+
+.input-message {
+  @apply h-32 resize-none;
+}
+
+.label-input {
+  @apply absolute top-0 transition-transform duration-500 translate-y-4 text-lg cursor-none sm:cursor-pointer text-gray-50 left-3 peer-focus:-translate-y-3 peer-focus:scale-[0.8] peer-focus:-translate-x-2 bg-background_primary px-2 peer-placeholder-shown:text-gray-50;
+}
+
+.input-text:not(:placeholder-shown) + label {
+  @apply -translate-x-2 scale-[0.8] -translate-y-3;
+}
+
+.input-message:not(:placeholder-shown) + label {
+  @apply -translate-x-2 scale-[0.8] -translate-y-3;
+}
+
+.spin {
+  @apply animate-spin;
+}
+
+.font-italic {
+  @apply italic;
+}
+
+.pulse {
+  @apply animate-pulse;
+}
+
+.text-gradient-1 {
+  @apply text-transparent bg-clip-text bg-gradient-to-r to-eucalyptus from-amber;
+}
+
+.text-gradient-2 {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-eucalyptus to-amber
+}
+
+.bg-gradient-1 {
+  @apply bg-gradient-to-r from-background_primary/50 to-amber;
+}
