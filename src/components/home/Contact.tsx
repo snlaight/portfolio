@@ -3,11 +3,12 @@
 
 'use client';
 
+import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { ContactFormValidationRules } from '@/utils/validators';
 import { sendEmail } from '@/utils/email';
-import { isEmail, isName } from '@/utils/validator';
-import { DeveloperIcon } from '@/components';
+import { DeveloperIcon, Input } from '@/components';
 import { useAlert } from '@/utils/hooks/useAlert';
 
 interface DataForm {
@@ -19,16 +20,16 @@ interface DataForm {
 const Contact = () => {
   const {
     register,
-    handleSubmit,
     reset,
     formState: { errors },
+    getValues,
   } = useForm<DataForm>();
 
   const { handleAlert } = useAlert();
 
-  const onSendEmail = async (data: DataForm) => {
-    const { full_name, email, message } = data;
-
+  const onSendEmail: FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
+    const { full_name, email, message } = getValues();
     await sendEmail({ full_name, email, message })
       .then(() => handleAlert?.({
         type: 'success',
@@ -42,6 +43,34 @@ const Contact = () => {
     reset();
   };
 
+  const FormFields = [
+    {
+      id: 'full_name',
+      name: 'full_name',
+      label: 'Full Name',
+      type: 'text',
+      register,
+      options: ContactFormValidationRules.full_name,
+    },
+    {
+      id: 'email',
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      register,
+      options: ContactFormValidationRules.email,
+
+    },
+    {
+      id: 'message',
+      name: 'message',
+      label: 'Message',
+      type: 'text',
+      register,
+      options: ContactFormValidationRules.message,
+    },
+  ];
+
   return (
     <section
       className='flex flex-col py-8 mt-36 items-center w-full gap-y-16 rounded-t-[5rem] md:rounded-t-[10rem]'
@@ -52,57 +81,20 @@ const Contact = () => {
         <DeveloperIcon icon='/contact-me.json' />
         <form
           className='flex flex-col gap-y-10 items-center w-full transition-all duration-300 md:w-96'
-          onSubmit={handleSubmit(onSendEmail)}
+          onSubmit={onSendEmail}
         >
-          <div className='flex relative flex-col w-full'>
-            <input
-              id='full_name'
-              className='input-text peer'
-              type='text'
-              placeholder=' '
-              {...register('full_name', {
-                required: 'Your name is required',
-                minLength: { value: 6, message: 'Minimum 6 characters' },
-                validate: isName,
-              })}
+          {FormFields.map((field) => (
+            <Input
+              key={field.id}
+              id={field.id}
+              name={field.name}
+              label={field.label}
+              type={field.type}
+              register={field.register}
+              options={field.options}
+              error={errors[field.name as keyof DataForm] || ''}
             />
-            <label htmlFor='full_name' className='label-input'>
-              Full Name
-            </label>
-            {errors.full_name && <p className='absolute -bottom-6 text-red-500'>{errors.full_name.message}</p>}
-          </div>
-          <div className='flex relative flex-col w-full'>
-            <input
-              id='email'
-              className='input-text peer'
-              type='email'
-              placeholder=' '
-              {...register('email', {
-                required: 'Your email is required',
-                validate: isEmail,
-              })}
-            />
-            <label htmlFor='email' className='label-input'>
-              Email
-            </label>
-            {errors.email && <p className='absolute -bottom-6 text-red-500'>{errors.email.message}</p>}
-          </div>
-          <div className='flex relative flex-col w-full'>
-            <textarea
-              id='message'
-              className='input-message peer'
-              placeholder=' '
-              {...register('message', {
-                required: 'This message is required',
-                minLength: { value: 6, message: 'Minimum 6 characters' },
-                maxLength: { value: 250, message: 'Maximum 250 characters' },
-              })}
-            />
-            <label htmlFor='message' className='label-input'>
-              Message
-            </label>
-            {errors.message && <p className='absolute -bottom-6 text-red-500'>{errors.message.message}</p>}
-          </div>
+          ))}
           <button type='submit' className='w-full button-custom'>Send mail</button>
         </form>
       </div>

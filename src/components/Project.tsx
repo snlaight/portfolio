@@ -57,7 +57,7 @@ const Project = ({ project, showLinks = true, dragFree = false }: Props) => {
         </div>
         {showLinks && (
           <div className='flex justify-between items-center px-8 py-2'>
-            <Link href={`./projects/${project.id}`}>
+            <Link href={`./projects/${project._id}`}>
               <span className='text-lg font-bold text-gray-50'>{project.title}</span>
             </Link>
             <div className='flex gap-4 items-center'>
@@ -73,7 +73,7 @@ const Project = ({ project, showLinks = true, dragFree = false }: Props) => {
               <Link
                 as={project.url}
                 passHref
-                href={project.url}
+                href={project.url ? project.url : '/'}
                 target='_blank'
                 className='p-1 rounded-lg duration-300 hover:shadow-icons-project'
               >

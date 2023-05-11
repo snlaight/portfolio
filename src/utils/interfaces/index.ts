@@ -11,7 +11,7 @@ interface Technology {
 }
 
 export interface Project {
-    id: number;
+    _id: number;
     title: string;
     images: string[];
     technologies: Technology[];
@@ -31,4 +31,13 @@ export interface Skill {
         }
     };
     category: string;
+}
+
+export interface ValidationRule {
+    validate: (value: string) => string;
+    required?: string | boolean;
+}
+
+export interface ValidationRules {
+    [key: string]: ValidationRule;
 }

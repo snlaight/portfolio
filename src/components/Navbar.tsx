@@ -6,20 +6,20 @@ import Link from 'next/link';
 
 import AlertWrapper from '@/components/Alert/AlertWrapper';
 import { useAlert } from '@/utils/hooks/useAlert';
+import { NavRoutes } from '@/routes';
 
 const Navbar = () => {
   const [linkHover, setLinkHover] = useState('');
   const [showMenuMobile, setShowMenuMobile] = useState(false);
 
   const { alerts } = useAlert();
-  console.log(alerts);
 
   const onClickLink = (e: any) => {
     setLinkHover(e.target.textContent);
   };
 
   const onClickHamburguer = () => {
-    setShowMenuMobile(!showMenuMobile);
+    setShowMenuMobile((prev) => !prev);
   };
 
   const onClickLinkMobile = (e: any) => {
@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className='flex fixed top-0 z-50 flex-row items-center px-16 py-8 w-full backdrop-blur-lg bg-slate-400/5'>
       <AlertWrapper alerts={alerts || []} />
       <Link
-        href='#presentation'
+        href='#top'
         className='absolute left-4 w-16 h-16 cursor-none sm:cursor-pointer md:left-auto md:h-20 md:w-20'
       >
         <Image src='/sl-logo.png' alt='logo' width={80} height={80} className='pt-2' />
@@ -39,34 +39,15 @@ const Navbar = () => {
 
       {/* Desktop */}
       <div className='hidden gap-4 md:flex md:flex-row md:m-auto'>
-        <Link
-          className={`nav-link ${linkHover === 'About me' && 'nav-link-active'}`}
-          onClick={onClickLink}
-          href='#about'
-        >
-          About me
-        </Link>
-        <Link
-          className={`nav-link ${linkHover === 'Skills' && 'nav-link-active'}`}
-          onClick={onClickLink}
-          href='#skills'
-        >
-          Skills
-        </Link>
-        <Link
-          className={`nav-link ${linkHover === 'Projects' && 'nav-link-active'}`}
-          onClick={onClickLink}
-          href='#projects'
-        >
-          Projects
-        </Link>
-        <Link
-          className={`nav-link ${linkHover === 'Contact' && 'nav-link-active'}`}
-          onClick={onClickLink}
-          href='#contact'
-        >
-          Contact
-        </Link>
+        {NavRoutes.map((route) => (
+          <Link
+            className={`nav-link ${linkHover === route.name && 'nav-link-active'}`}
+            onClick={onClickLink}
+            href={route.path}
+          >
+            {route.name}
+          </Link>
+        ))}
       </div>
 
       {/* Hamburguer */}
@@ -80,34 +61,15 @@ const Navbar = () => {
           showMenuMobile ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <Link
-          className={`nav-link-mobile ${linkHover === 'About me' && 'nav-link-active'}`}
-          onClick={onClickLinkMobile}
-          href='#about'
-        >
-          About me
-        </Link>
-        <Link
-          className={`nav-link-mobile ${linkHover === 'Skills' && 'nav-link-active'}`}
-          onClick={onClickLinkMobile}
-          href='#skills'
-        >
-          Skills
-        </Link>
-        <Link
-          className={`nav-link-mobile ${linkHover === 'Projects' && 'nav-link-active'}`}
-          onClick={onClickLinkMobile}
-          href='#projects'
-        >
-          Projects
-        </Link>
-        <Link
-          className={`nav-link-mobile ${linkHover === 'Contact' && 'nav-link-active'}`}
-          onClick={onClickLinkMobile}
-          href='#contact'
-        >
-          Contact
-        </Link>
+        {NavRoutes.map((route) => (
+          <Link
+            className={`nav-link ${linkHover === route.name && 'nav-link-active'}`}
+            onClick={onClickLinkMobile}
+            href={route.path}
+          >
+            {route.name}
+          </Link>
+        ))}
       </div>
     </nav>
   );

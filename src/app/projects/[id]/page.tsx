@@ -1,13 +1,22 @@
 import React from 'react';
 
+import ProjectPage from '@/sections/project';
+import { getProjectById } from '@/utils/sanity/queries';
+
 type Props = {
     params: {
         id: string
     }
 }
 
-const ProjectPage = ({ params }:Props) => (
-  <div className='py-32 text-white'>Project Page: {params.id}</div>
-);
+const ProjectDetails = async ({ params }:Props) => {
+  const data = await getProjectById(params.id);
+  const project = data[0];
+  return (
+    <main className='flex relative flex-col gap-y-16 items-center py-24 w-full sm:py-32 container-section'>
+      <ProjectPage project={project} />
+    </main>
+  );
+};
 
-export default ProjectPage;
+export default ProjectDetails;

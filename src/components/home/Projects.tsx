@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import Project from '../Project';
+import { Project } from '@/components';
 import { Project as IProject } from '@/utils/interfaces';
 
 interface Props {
@@ -17,7 +17,7 @@ const Projects = ({ projects }: Props) => (
       {projects
         .filter((project) => project.featured)
         .map((project) => (
-          <Project key={project.id} project={project} />
+          <Project key={project._id} project={project} />
         ))}
     </div>
 

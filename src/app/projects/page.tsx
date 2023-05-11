@@ -1,11 +1,13 @@
 import React from 'react';
 
-type Props = {
-    projects: any[]
-}
+import ProjectsPage from '@/sections/projects';
+import { getProjects } from '@/utils/sanity/queries';
 
-const ProjectsPage = ({ projects }: Props) => (
-  <div>ProjectsPage</div>
-);
+const AllProjectsPage = async () => {
+  const data = await getProjects();
+  return (
+    <ProjectsPage projects={data} />
+  );
+};
 
-export default ProjectsPage;
+export default AllProjectsPage;

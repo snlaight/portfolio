@@ -74,7 +74,7 @@ body {
 
 .input-select-custom {
   @apply px-8 py-3 text-lg font-bold text-white bg-black rounded-t-lg border-none outline-none;
-  box-shadow: 10px 0px 15px #3b82f6, 0px 0px 20px #22d3ee, -10px 0px 25px #4f46e5;
+  box-shadow: 10px 0px 15px #29a847, 0px 0px 20px #ffc105, -10px 0px 25px #007bff;
   border-right: 15px solid transparent;
 }
 
