@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity';
+import { notFound } from 'next/navigation';
 
 import { client } from '@/sanity/lib/client';
 
@@ -49,7 +50,7 @@ export const getProjects = () => {
   return client.fetch(query);
 };
 
-export const getProjectById = (id: string) => {
+export const getProjectById = async (id: string) => {
   const query = groq`
     *[_type == "project" && _id == "${id}"] {
       _id,
@@ -74,6 +75,8 @@ export const getProjectById = (id: string) => {
       description
     }
   `;
+  const result = await client.fetch(query);
 
-  return client.fetch(query);
+  if (!result.length) return notFound();
+  return result;
 };

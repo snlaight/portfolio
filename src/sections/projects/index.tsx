@@ -12,9 +12,8 @@ type Props = {
 const ProjectsPage = ({ projects }: Props) => {
   const [projectCategory, setProjectCategory] = useState('all');
   return (
-    <main className='flex relative flex-col gap-y-16 items-center py-24 w-full sm:py-16 container-section'>
+    <main className='flex relative flex-col gap-y-16 items-center py-32 w-full sm:py-16 container-section'>
       <h1 className='text-6xl font-bold text-gradient-2'>My Projects</h1>
-
       <form>
         <select
           className='input-select-custom w-fit'
@@ -38,8 +37,8 @@ const ProjectsPage = ({ projects }: Props) => {
           ))}
       </div>
 
-      <Link href='./' className='absolute left-0 top-8 cursor-pointer sm:left-0'>
-        <Image src='/assets/icons/back-arrow.svg' alt='back arrow' width={50} height={50} className='' />
+      <Link href='/' className='absolute left-0 top-20 cursor-pointer sm:left-0'>
+        <Image src='/back-arrow.svg' alt='back arrow' width={50} height={50} className='' />
       </Link>
     </main>
   );

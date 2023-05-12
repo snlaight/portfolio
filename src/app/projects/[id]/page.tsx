@@ -11,10 +11,10 @@ type Props = {
 
 const ProjectDetails = async ({ params }:Props) => {
   const data = await getProjectById(params.id);
-  const project = data[0];
+
   return (
-    <main className='flex relative flex-col gap-y-16 items-center py-24 w-full sm:py-32 container-section'>
-      <ProjectPage project={project} />
+    <main className='flex flex-col items-center px-8 py-24 my-0 w-full text-center md:text-start md:my-14 sm:py-32 container-section'>
+      <ProjectPage project={data[0]} />
     </main>
   );
 };
