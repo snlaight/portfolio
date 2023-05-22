@@ -3,11 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import type { LottiePlayer } from 'lottie-web';
 
-type DeveloperIconProps = {
-  icon: string
-}
+import { IDeveloperIconProps } from '@/utils/interfaces/props';
 
-const DeveloperIcon = ({ icon } : DeveloperIconProps) => {
+const DeveloperIcon = ({ icon } : IDeveloperIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [lottie, setLottie] = useState<LottiePlayer | null>(null);
 

@@ -10,12 +10,7 @@ import { ContactFormValidationRules } from '@/utils/validators';
 import { sendEmail } from '@/utils/email';
 import { DeveloperIcon, Input } from '@/components';
 import { useAlert } from '@/utils/hooks/useAlert';
-
-interface DataForm {
-  full_name: string;
-  email: string;
-  message: string;
-}
+import { EmailSend } from '@/utils/interfaces';
 
 const Contact = () => {
   const {
@@ -23,7 +18,7 @@ const Contact = () => {
     reset,
     formState: { errors },
     getValues,
-  } = useForm<DataForm>();
+  } = useForm<EmailSend>();
 
   const { handleAlert } = useAlert();
 
@@ -92,7 +87,7 @@ const Contact = () => {
               type={field.type}
               register={field.register}
               options={field.options}
-              error={errors[field.name as keyof DataForm] || ''}
+              error={errors[field.name as keyof EmailSend] || ''}
             />
           ))}
           <button type='submit' className='w-full button-custom'>Send mail</button>

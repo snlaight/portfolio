@@ -3,17 +3,11 @@ import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { Project as ProjectI } from '@/utils/interfaces';
 import { EmblaOptionsNoDrag, EmblaOptionsDrag } from '@/utils/embla';
 import { urlForImage } from '@/utils/sanity/image.builder';
+import { IProjectComponentProps } from '@/utils/interfaces/props';
 
-interface Props {
-  project: ProjectI;
-  showLinks?: boolean;
-  dragFree?: boolean;
-}
-
-const Project = ({ project, showLinks = true, dragFree = false }: Props) => {
+const Project = ({ project, showLinks = true, dragFree = false }: IProjectComponentProps) => {
   const slides = Array.from(Array(4).keys());
   const delayRandom = Math.floor(Math.random() * (3000 - 2500 + 1) + 2500);
   const emblaOptions = dragFree ? EmblaOptionsDrag : EmblaOptionsNoDrag;
@@ -56,17 +50,17 @@ const Project = ({ project, showLinks = true, dragFree = false }: Props) => {
           ))}
         </div>
         {showLinks && (
-          <div className='flex items-center justify-between px-8 py-2'>
+          <div className='flex justify-between items-center px-8 py-2'>
             <Link href={`./projects/${project._id}`}>
               <span className='text-lg font-bold text-gray-50'>{project.title}</span>
             </Link>
-            <div className='flex items-center gap-4'>
+            <div className='flex gap-4 items-center'>
               <Link
                 as={project.repository}
                 passHref
                 href={project.repository}
                 target='_blank'
-                className='p-1 duration-300 rounded-lg hover:shadow-icons-project'
+                className='p-1 rounded-lg duration-300 hover:shadow-icons-project'
               >
                 <Image alt='Github' src='/github-project.svg' width={30} height={30} />
               </Link>
@@ -75,7 +69,7 @@ const Project = ({ project, showLinks = true, dragFree = false }: Props) => {
                 passHref
                 href={project.url ? project.url : '/'}
                 target='_blank'
-                className='p-1 duration-300 rounded-lg hover:shadow-icons-project'
+                className='p-1 rounded-lg duration-300 hover:shadow-icons-project'
               >
                 <Image alt='Github' src='/link-project.svg' width={30} height={30} />
               </Link>

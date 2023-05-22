@@ -38,10 +38,21 @@ module.exports = {
           '50%': { 'background-position': '400% 0' },
           '100%': { 'background-position': '0 0' },
         },
+        fadeInOutPicture: {
+          '0%': { opacity: '0' },
+          '50%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        fadeTextFromSide: {
+          '0%': { opacity: '0', transform: 'translateX(-100%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
       },
       animation: {
         'fade-in-tab': 'fadeInTab 0.5s ease-in-out',
         'glowing-button': 'glowingButton 50s ease-in-out infinite',
+        'fade-in-out-picture': 'fadeInOutPicture 5s ease-in-out infinite',
+        'fade-text-from-side': 'fadeTextFromSide 8s ease-in-out',
       },
     },
   },

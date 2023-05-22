@@ -3,13 +3,9 @@
 import Link from 'next/link';
 
 import { Project } from '@/components';
-import { Project as IProject } from '@/utils/interfaces';
+import { IProjectProps } from '@/utils/interfaces/props';
 
-interface Props {
-  projects: IProject[];
-}
-
-const Projects = ({ projects }: Props) => (
+const Projects = ({ projects }: IProjectProps) => (
   <section className='flex flex-col gap-y-16 items-center mt-36 w-full container-section' id='projects'>
     <h2 className='text-6xl font-bold text-gradient-2'>My Projects</h2>
 

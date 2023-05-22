@@ -2,15 +2,10 @@
 
 import { useState } from 'react';
 
-import { dataSkills } from '@/utils/constants/data';
 import { Skill } from '@/components';
-import { Skill as ISkill } from '@/utils/interfaces';
+import { ISkillProps } from '@/utils/interfaces/props';
 
-interface Props {
-  skills: ISkill[];
-}
-
-const Skills = ({ skills }: Props) => {
+const Skills = ({ skills }: ISkillProps) => {
   const [skillsCategory, setSkillsCategory] = useState({ index: 0, category: 'frontend' });
 
   const onClickCategory = (index: number, category: string) => {

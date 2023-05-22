@@ -1,13 +1,8 @@
 import Image from 'next/image';
 
-import { Skill as SkillI } from '@/utils/interfaces';
+import { ISkillComponentProps } from '@/utils/interfaces/props';
 
-interface Props {
-  skill: SkillI;
-  widthCustom?: boolean;
-}
-
-const Skill = ({ skill, widthCustom }: Props) => (
+const Skill = ({ skill, widthCustom }: ISkillComponentProps) => (
   <figure
     className={`relative flex flex-col content-center h-16 overflow-hidden group gap-y-2 items-center ${
       widthCustom ? 'w-[5rem]' : 'w-full'
@@ -21,6 +16,5 @@ const Skill = ({ skill, widthCustom }: Props) => (
     </figcaption>
   </figure>
 );
-
 
 export default Skill;

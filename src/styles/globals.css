@@ -127,6 +127,11 @@ body {
   @apply block w-full mx-auto mt-2 ease-in-out bg-gray-50 content-[''] h-1 animate-fade-in-tab;
 }
 
+
+.image-animation {
+@apply animate-fade-in-out-picture;
+}
+
 .input-text,
 .input-message {
   @apply px-4 py-4 w-full text-lg font-bold text-gray-50 bg-transparent rounded-lg border-2 border-gray-50 outline-none;
@@ -173,7 +178,7 @@ body {
 }
 
 .links-container {
-@apply flex flex-col items-center space-x-4 md:space-x-24 space-y-8 sm:flex-row sm:space-y-0
+@apply flex items-center justify-center space-x-4 md:space-x-24 space-y-8 sm:flex-row sm:space-y-0
 }
 
 .xl-text {

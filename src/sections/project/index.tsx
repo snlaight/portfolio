@@ -22,21 +22,21 @@ const ProjectPage = ({ project }: Props) => (
         {project.url && (
         <Link href={project.url} target='_blank'>
           <button type='button' className='flex gap-x-4 items-center button-custom'>
-            View Website
+            <span className='hidden text-sm md:flex md:text-base'>View Website</span>
             <Image src='/link-project.svg' alt='external link' width={25} height={25} />
           </button>
         </Link>
         )}
         <Link href={project.repository} target='_blank'>
           <button type='button' className='flex gap-x-4 items-center button-custom'>
-            View Code
+            <span className='hidden text-sm md:flex md:text-base'>View Code</span>
             <Image src='/github-project.svg' alt='external link' width={25} height={25} />
           </button>
         </Link>
       </div>
       <div className='flex flex-col gap-6'>
         <h2 className='h2-text'>About this project</h2>
-        <p className='text-sm leading-8 text-gray-50 md:text-xl'>{project.description}</p>
+        <p className='text-sm leading-10 text-gray-50 md:text-xl'>{project.description}</p>
       </div>
       <div className='flex flex-col space-x-6'>
         <h2 className='text-4xl font-bold text-gray-50'>Technologies</h2>
