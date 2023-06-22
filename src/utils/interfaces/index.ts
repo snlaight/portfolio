@@ -34,8 +34,10 @@ export interface Skill {
 }
 
 export interface ValidationRule {
-    validate: (value: string) => string;
-    required?: string | boolean;
+    required?: {
+        value: boolean;
+        message: string;
+    };
 }
 
 export interface ValidationRules {

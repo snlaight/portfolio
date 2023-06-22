@@ -6,7 +6,7 @@ import { getProjectById } from '@/utils/sanity/queries';
 type Props = {
     params: {
         id: string
-    }
+    },
 }
 
 const ProjectDetails = async ({ params }:Props) => {

@@ -44,6 +44,7 @@ const Navbar = () => {
             className={`nav-link ${linkHover === route.name && 'nav-link-active'}`}
             onClick={onClickLink}
             href={route.path}
+            key={route.name}
           >
             {route.name}
           </Link>
@@ -66,6 +67,7 @@ const Navbar = () => {
             className={`nav-link ${linkHover === route.name && 'nav-link-active'}`}
             onClick={onClickLinkMobile}
             href={route.path}
+            key={route.name}
           >
             {route.name}
           </Link>

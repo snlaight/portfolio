@@ -3,8 +3,7 @@
 
 'use client';
 
-import { FormEventHandler } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 
 import { ContactFormValidationRules } from '@/utils/validators';
 import { sendEmail } from '@/utils/email';
@@ -13,18 +12,22 @@ import { useAlert } from '@/utils/hooks/useAlert';
 import { EmailSend } from '@/utils/interfaces';
 
 const Contact = () => {
-  const {
-    register,
-    reset,
-    formState: { errors },
-    getValues,
-  } = useForm<EmailSend>();
+  const { register, reset, formState: { errors }, getValues, handleSubmit } = useForm<EmailSend>();
 
   const { handleAlert } = useAlert();
 
-  const onSendEmail: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
+  const handleError: SubmitErrorHandler<EmailSend> = (error) => {
+    console.log({ error });
+
+    handleAlert?.({
+      type: 'error',
+      message: 'Please fill in all fields.',
+    });
+  };
+
+  const handleEmailSend: SubmitHandler<EmailSend> = async () => {
     const { full_name, email, message } = getValues();
+
     await sendEmail({ full_name, email, message })
       .then(() => handleAlert?.({
         type: 'success',
@@ -32,7 +35,7 @@ const Contact = () => {
       }))
       .catch(() => handleAlert?.({
         type: 'error',
-        message: 'Error sending email',
+        message: 'Error sending email.',
       }));
 
     reset();
@@ -76,7 +79,7 @@ const Contact = () => {
         <DeveloperIcon icon='/contact-me.json' />
         <form
           className='flex flex-col gap-y-10 items-center w-full transition-all duration-300 md:w-96'
-          onSubmit={onSendEmail}
+          onSubmit={handleSubmit(handleEmailSend, handleError)}
         >
           {FormFields.map((field) => (
             <Input
