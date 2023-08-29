@@ -17,8 +17,6 @@ const Contact = () => {
   const { handleAlert } = useAlert();
 
   const handleError: SubmitErrorHandler<EmailSend> = (error) => {
-    console.log({ error });
-
     handleAlert?.({
       type: 'error',
       message: 'Please fill in all fields.',
