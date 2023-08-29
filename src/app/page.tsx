@@ -8,6 +8,8 @@ type HomeProps = {
   }
 }
 
+export const revalidate = 60;
+
 const Home = async ({ params }: HomeProps) => {
   const skills = await getTechnologies();
   const projects = await getProjects();

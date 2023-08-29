@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
